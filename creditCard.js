@@ -124,3 +124,7 @@ const idInvalidCardCompanies = nestedInvalidArr => {
 }
 
 console.log(idInvalidCardCompanies(invalidCards))
+
+
+// Convert a numString to an array of number
+const stringToNum = numString => numString.split('').map(Number);
