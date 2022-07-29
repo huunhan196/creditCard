@@ -128,3 +128,45 @@ console.log(idInvalidCardCompanies(invalidCards))
 
 // Convert a numString to an array of number
 const stringToNum = numString => numString.split('').map(Number);
+
+// Convert Invalid Card Number to Valid Card Number
+
+const convertIntoValid = (arr) => {
+  let checkForModulo = 0;
+  let lastElement = arr[arr.length - 1];
+  let newArray = arr.slice(0, -1);
+
+  newArray.reverse();
+
+  for (i = 0; i < arr.length; i += 2) {
+    newArray[i] *= 2;
+    if (newArray[i] > 9) {
+      newArray[i] -= 9;
+    }
+    checkForModulo += newArray[i];
+  }
+
+  for (j = 1; j < newArray.length; j += 2) {
+    checkForModulo += newArray[j];
+  }
+  //console.log(checkForModulo)
+  //console.log(newArray)
+
+  let moduloNum = checkForModulo % 10;
+  //console.log(moduloNum);
+  let newLastDigit = 0;
+
+  if (moduloNum > 0) {
+    newLastDigit = +(10 - moduloNum);
+  //console.log(newLastDigit);
+  }
+  let newValidCard = arr;
+  newValidCard.splice(-1, 1, newLastDigit);
+
+  return newValidCard;
+};
+
+//Example
+
+console.log('Old Invalid Card:\n' + invalid2.join(""))
+console.log('New Valid Card:\n'+ convertIntoValid(invalid2).join(""));
